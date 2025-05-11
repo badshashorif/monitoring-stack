@@ -19,11 +19,31 @@ services:
     image: mariadb:10.5
     container_name: cacti-db
     restart: always
+    command:
+      - mysqld
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --max_connections=200
+      - --max_heap_table_size=128M
+      - --max_allowed_packet=32M
+      - --tmp_table_size=128M
+      - --join_buffer_size=250M
+      - --innodb_buffer_pool_size=2G
+      - --innodb_doublewrite=ON
+      - --innodb_flush_log_at_timeout=3
+      - --innodb_read_io_threads=32
+      - --innodb_write_io_threads=16
+      - --innodb_buffer_pool_instances=9
+      - --innodb_file_format=Barracuda
+      - --innodb_large_prefix=1
+      - --innodb_io_capacity=5000
+      - --innodb_io_capacity_max=10000
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      TZ: ${TZ}
     volumes:
       - ./cacti/db:/var/lib/mysql
     networks:
