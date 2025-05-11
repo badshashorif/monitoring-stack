@@ -1,4 +1,4 @@
-cacti.monitor.grameencybernet.net {
+cacti.monitor.example.net {
     reverse_proxy cacti:80
     encode gzip
     log {
@@ -6,7 +6,7 @@ cacti.monitor.grameencybernet.net {
     }
 }
 
-nagios.monitor.grameencybernet.net {
+nagios.monitor.example.net {
     reverse_proxy nagios:80
     encode gzip
     log {
