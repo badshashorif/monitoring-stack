@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  caddy:
+    image: caddy:latest
+    container_name: caddy
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./caddy/data:/data
+      - ./caddy/config:/config
+    networks:
+      - monitor_net
+
+  cacti-db:
+    image: mariadb:10.5
+    container_name: cacti-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ./cacti/db:/var/lib/mysql
+    networks:
+      - monitor_net
+
+  cacti:
+    image: smcline06/cacti
+    container_name: cacti
+    restart: always
+    environment:
+      DB_NAME: ${MYSQL_DATABASE}
+      DB_USER: ${MYSQL_USER}
+      DB_PASS: ${MYSQL_PASSWORD}
+      DB_HOST: cacti-db
+      DB_PORT: 3306
+      DB_ROOT_PASS: ${MYSQL_ROOT_PASSWORD}
+      INITIALIZE_DB: 1
+      TZ: ${TZ}
+    depends_on:
+      - cacti-db
+    volumes:
+      - ./cacti/data:/cacti
+      - ./cacti/spine:/spine
+      - ./cacti/backups:/backups
+    expose:
+      - "80"
+    networks:
+      - monitor_net
+
+  nagios:
+    image: jasonrivers/nagios:latest
+    container_name: nagios
+    restart: always
+    volumes:
+      - ./nagios/etc:/opt/nagios/etc
+    expose:
+      - "80"
+    networks:
+      - monitor_net
+
+networks:
+  monitor_net:
+    driver: bridge

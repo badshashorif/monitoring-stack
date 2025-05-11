@@ -1,0 +1,15 @@
+cacti.monitor.grameencybernet.net {
+    reverse_proxy cacti:80
+    encode gzip
+    log {
+        output file /data/caddy-cacti.log
+    }
+}
+
+nagios.monitor.grameencybernet.net {
+    reverse_proxy nagios:80
+    encode gzip
+    log {
+        output file /data/caddy-nagios.log
+    }
+}
