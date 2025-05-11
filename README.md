@@ -3,8 +3,8 @@
 This project deploys a secure monitoring stack using **Cacti**, **Nagios**, and **Caddy** for automatic HTTPS reverse proxy.
 
 ## 🌐 Subdomains
-- `https://cacti.monitor.grameencybernet.net`
-- `https://nagios.monitor.grameencybernet.net`
+- `https://cacti.monitor.example.net`
+- `https://nagios.monitor.example.net`
 
 ## 🧱 Stack Overview
 - **Caddy**: Reverse proxy with automatic SSL (Let's Encrypt)
@@ -19,8 +19,8 @@ Ensure the following DNS A records point to your server:
 
 | Subdomain                         | IP Address         |
 |----------------------------------|--------------------|
-| cacti.monitor.grameencybernet.net | YOUR_PUBLIC_IP     |
-| nagios.monitor.grameencybernet.net | YOUR_PUBLIC_IP     |
+| cacti.monitor.example.net | YOUR_PUBLIC_IP     |
+| nagios.monitor.example.net | YOUR_PUBLIC_IP     |
 
 ### 2. Launch with Docker
 ```bash
@@ -28,8 +28,8 @@ docker compose up -d
 ```
 
 ### 3. Access Dashboards
-- Cacti: https://cacti.monitor.grameencybernet.net
-- Nagios: https://nagios.monitor.grameencybernet.net
+- Cacti: https://cacti.monitor.example.net
+- Nagios: https://nagios.monitor.example.net
 
 ## 📁 Folder Structure
 ```
@@ -54,4 +54,4 @@ monitoring-stack/
 - You can enable basic auth inside the Caddyfile for protected routes.
 
 ---
-Maintained by [MD SHORIFUL ISLAM](mailto:you@example.com)
+Maintained by [MD SHORIFUL ISLAM](mailto:badshashorif@gmail.com)
