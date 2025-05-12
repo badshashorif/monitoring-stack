@@ -84,6 +84,19 @@ services:
     networks:
       - monitor_net
 
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: uptime-kuma
+    restart: always
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ./uptime-kuma:/app/data
+    expose:
+      - "3001"
+    networks:
+      - monitor_net
+
 networks:
   monitor_net:
     driver: bridge
