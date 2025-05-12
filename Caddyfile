@@ -13,3 +13,11 @@ nagios.monitor.example.net {
         output file /data/caddy-nagios.log
     }
 }
+
+uptime.monitor.example.net {
+  reverse_proxy uptime-kuma:3001
+  encode gzip
+  log {
+    output file /data/caddy-uptime-kuma.log
+  }
+}
