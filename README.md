@@ -21,9 +21,8 @@ Ensure the following DNS A records point to your server:
 
 | Subdomain                         | IP Address         |
 |----------------------------------|--------------------|
-| cacti.monitor.example.net | YOUR_PUBLIC_IP     |
-| nagios.monitor.example.net | YOUR_PUBLIC_IP     |
-| uptime.monitor.example.net | YOUR_PUBLIC_IP     |
+| *.monitor.example.net | YOUR_PUBLIC_IP     |
+
 
 ### 2. Launch with Docker
 ```bash
