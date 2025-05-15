@@ -50,7 +50,7 @@ services:
       - monitor_net
 
   cacti:
-    image: smcline06/cacti
+    image: badshashorif/cacti
     container_name: cacti
     restart: always
     environment:
