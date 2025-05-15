@@ -50,7 +50,7 @@ services:
       - monitor_net
 
   cacti:
-    image: badshashorif/cacti
+    image: badshashorif/cacti:latest
     container_name: cacti
     restart: always
     environment:
