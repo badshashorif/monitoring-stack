@@ -27,9 +27,15 @@ services:
       - --max_heap_table_size=128M
       - --max_allowed_packet=32M
       - --tmp_table_size=128M
-      - --join_buffer_size=250M
+      - --join_buffer_size=2M
+      - --sort_buffer_size=2M
+      - --read_buffer_size=1M
+      - --read_rnd_buffer_size=4M
+      - --thread_stack=256K
+      - --binlog_cache_size=1M
       - --innodb_buffer_pool_size=2G
-      - --innodb_doublewrite=ON
+      - --innodb_doublewrite=OFF
+      - --innodb_flush_method=O_DIRECT
       - --innodb_flush_log_at_timeout=3
       - --innodb_read_io_threads=32
       - --innodb_write_io_threads=16
